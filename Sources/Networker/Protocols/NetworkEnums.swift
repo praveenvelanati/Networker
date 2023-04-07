@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RequestError: Error {
+public enum RequestError: Error {
     case decode
     case invalidURL
     case noResponse
@@ -16,7 +16,7 @@ enum RequestError: Error {
     case unknown
 }
 
-enum RequestMethod: String {
+public enum RequestMethod: String {
     case delete = "DELETE"
     case get = "GET"
     case patch = "PATCH"

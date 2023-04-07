@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HTTPEndpoint {
+public protocol HTTPEndpoint {
     var scheme: String { get }
     var host: String { get }
     var path: String { get }
