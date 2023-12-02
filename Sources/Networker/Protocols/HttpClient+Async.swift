@@ -13,8 +13,7 @@ public extension HTTPClient {
         urlComponents.scheme = endPoint.scheme
         urlComponents.host = endPoint.host
         urlComponents.path = endPoint.path
-        urlComponents.query = "q=Nike shoes&country=us&language=en"
-        
+        urlComponents.queryItems = endPoint.queryItems
         guard let url = urlComponents.url else {
             return .failure(.invalidURL)
         }
@@ -32,10 +31,15 @@ public extension HTTPClient {
             // check for status code
             switch response.statusCode {
             case 200...299:
-                guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data) else {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let decodedResponse = try decoder.decode(T.self, from: data)
+                    return .success(decodedResponse)
+                } catch {
+                    print(error)
                     return .failure(.decode)
                 }
-                return .success(decodedResponse)
             case 401:
                 return .failure(.unauthorized)
             default:

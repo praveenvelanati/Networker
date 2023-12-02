@@ -14,4 +14,5 @@ public protocol HTTPEndpoint {
     var body: [String: String]? { get }
     var headers: [String: String]? { get }
     var method: RequestMethod { get }
+    var queryItems: [URLQueryItem]? { get }
 }
