@@ -14,7 +14,7 @@ public extension HTTPClient {
         urlComponents.scheme = endPoint.scheme
         urlComponents.host = endPoint.host
         urlComponents.path = endPoint.path
-        urlComponents.query = "q=Nike shoes&country=us&language=en"
+        urlComponents.queryItems = endPoint.queryItems
         
         guard let url = urlComponents.url else {
             return completion(.failure(.invalidURL))
